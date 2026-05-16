@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Contact() {
@@ -24,8 +24,7 @@ export default function Contact() {
     setFormData({ nome: '', serventia: '', cidade: '', estado: '', servico: '', mensagem: '' });
   };
 
-  const whatsappMessage = `Olá! Sou ${formData.nome || '[seu nome]'} da serventia ${formData.serventia || '[nome da serventia]'} em ${formData.cidade || '[cidade]'}. Gostaria de solicitar um orçamento para ${formData.servico || 'restauração/encadernação'} de Livros Oficiais.`;
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+
 
   return (
     <section id="contato" className="py-24 md:py-32 bg-couro relative overflow-hidden">
