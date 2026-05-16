@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Guia de Identidade Visual - Arte do Livro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', Georgia, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #2C1810;
+            text-align: justify;
+            text-align-last: left;
+            string-set: doctitle "";
+        }
+
+        @page {
+            size: A4;
+            margin: 2cm 2cm 2.5cm 2cm;
+            @top-center { content: string(doctitle); font-size: 9pt; color: #8B6914; font-family: 'Inter', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+            @bottom-center { content: counter(page); font-size: 9pt; color: #8B6914; }
+        }
+        @page :first { margin: 0; @top-center { content: none; } @bottom-center { content: none; } }
+        @page cover { @top-center { content: none; } @bottom-center { content: none; } }
+        @page toc { @top-center { content: none; } @bottom-center { content: none; } }
+
+        .cover { page: cover; width: 210mm; height: 297mm; margin: 0; position: relative; overflow: hidden; page-break-after: always; }
+        .cover-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; filter: brightness(0.7); }
+        .cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: linear-gradient(135deg, rgba(44,24,16,0.85) 0%, rgba(74,44,32,0.6) 50%, rgba(44,24,16,0.9) 100%); }
+        .cover-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; text-align: center; width: 80%; color: #F5F0E8; }
+        .cover-emblem { width: 120px; height: 120px; margin: 0 auto 1.5cm; display: block; }
+        .cover-title { font-family: 'Cinzel', 'Playfair Display', serif; font-size: 32pt; font-weight: 600; letter-spacing: 4px; margin-bottom: 0.3cm; color: #D4AF37; text-transform: uppercase; }
+        .cover-subtitle { font-family: 'Playfair Display', serif; font-size: 14pt; font-weight: 400; color: #C9B896; margin-bottom: 2cm; font-style: italic; letter-spacing: 1px; }
+        .cover-line { width: 60px; height: 2px; background: #D4AF37; margin: 0 auto 1.5cm; }
+        .cover-meta { font-family: 'Inter', sans-serif; font-size: 10pt; color: #A09070; letter-spacing: 2px; text-transform: uppercase; }
+
+        .toc-page { page: toc; page-break-after: always; }
+        .toc-title { font-family: 'Cinzel', serif; font-size: 22pt; color: #4A2C20; text-align: center; margin-bottom: 1.5cm; letter-spacing: 2px; text-transform: uppercase; }
+        .toc { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 0.8em; }
+        .toc a { text-decoration: none; color: #2C1810; font-size: 11pt; display: block; }
+        .toc a::after { content: leader('.') target-counter(attr(href url), page); color: #8B6914; }
+        .toc a:hover { color: #8B6914; }
+
+        h1 { string-set: doctitle content(); font-family: 'Cinzel', serif; font-size: 22pt; color: #4A2C20; margin-top: 0; margin-bottom: 0.8cm; letter-spacing: 2px; text-transform: uppercase; page-break-after: avoid; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 16pt; color: #5C3D2E; margin-top: 1.2cm; margin-bottom: 0.5cm; font-weight: 600; page-break-after: avoid; border-bottom: 1px solid #C9B896; padding-bottom: 0.3cm; }
+        h3 { font-family: 'Inter', sans-serif; font-size: 12pt; color: #4A2C20; margin-top: 0.8cm; margin-bottom: 0.3cm; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .section { page-break-before: always; }
+        .section:first-of-type { page-break-before: auto; }
+
+        p { margin-bottom: 0.8em; }
+
+        .color-grid { display: flex; flex-wrap: wrap; gap: 0.8cm; margin: 0.8cm 0; }
+        .color-card { width: 4.5cm; text-align: center; page-break-inside: avoid; }
+        .color-swatch { width: 4.5cm; height: 3cm; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 0.3cm; }
+        .color-name { font-family: 'Cinzel', serif; font-size: 10pt; font-weight: 600; color: #4A2C20; margin-bottom: 0.1cm; }
+        .color-hex { font-family: 'Inter', sans-serif; font-size: 9pt; color: #6B5B4F; letter-spacing: 0.5px; }
+
+        .type-sample { margin: 0.8cm 0; padding: 0.6cm; background: #FAF8F5; border-left: 3px solid #8B6914; page-break-inside: avoid; }
+        .type-sample h4 { margin: 0 0 0.3cm; font-family: 'Cinzel', serif; font-size: 14pt; color: #4A2C20; }
+        .type-sample .font-name { font-size: 9pt; color: #8B6914; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4cm; }
+        .type-sample p { margin: 0; font-size: 11pt; }
+
+        .logo-grid { display: flex; flex-wrap: wrap; gap: 1cm; justify-content: center; margin: 0.8cm 0; }
+        .logo-item { text-align: center; page-break-inside: avoid; }
+        .logo-item img { max-height: 4cm; max-width: 100%; object-fit: contain; }
+        .logo-item .label { font-size: 9pt; color: #6B5B4F; margin-top: 0.3cm; text-transform: uppercase; letter-spacing: 1px; }
+
+        .app-grid { display: flex; flex-wrap: wrap; gap: 1cm; justify-content: center; margin: 0.8cm 0; }
+        .app-item { text-align: center; page-break-inside: avoid; }
+        .app-item img { max-height: 6cm; max-width: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .app-item .label { font-size: 9pt; color: #6B5B4F; margin-top: 0.3cm; }
+
+        .rule-box { border: 1px solid #C9B896; padding: 0.6cm; margin: 0.6cm 0; background: #FAF8F5; page-break-inside: avoid; }
+        .rule-box strong { color: #4A2C20; font-family: 'Cinzel', serif; font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; }
+
+        .texture-showcase { margin: 0.8cm 0; text-align: center; }
+        .texture-showcase img { max-width: 100%; max-height: 8cm; object-fit: cover; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        pre, table, figure, img, svg, blockquote { max-width: 100%; box-sizing: border-box; }
+        figure img, figure svg { max-width: 90%; height: auto; }
+        a { word-break: break-all; color: #8B6914; }
+        tr { page-break-inside: avoid; }
+    </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+    <img class="cover-bg" src="textura-couro.jpg" alt="">
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+        <img class="cover-emblem" src="logo-simbolo.png" alt="Emblema Arte do Livro">
+        <div class="cover-title">Arte do Livro</div>
+        <div class="cover-subtitle">Restauração &amp; Encadernação Artesanal</div>
+        <div class="cover-line"></div>
+        <div class="cover-meta">Guia de Identidade Visual<br>Maio de 2026</div>
+    </div>
+</div>
+
+<!-- SUMÁRIO -->
+<div class="toc-page">
+    <div class="toc-title">Sumário</div>
+    <ul class="toc">
+        <li><a href="#sec1">1. Conceito da Marca</a></li>
+        <li><a href="#sec2">2. Logotipo</a></li>
+        <li><a href="#sec3">3. Paleta de Cores</a></li>
+        <li><a href="#sec4">4. Tipografia</a></li>
+        <li><a href="#sec5">5. Elementos de Apoio</a></li>
+        <li><a href="#sec6">6. Aplicações</a></li>
+        <li><a href="#sec7">7. Diretrizes de Uso</a></li>
+    </ul>
+</div>
+
+<!-- SEÇÃO 1: CONCEITO -->
+<div class="section" id="sec1">
+    <h1>1. Conceito da Marca</h1>
+    <h2>1.1 Essência</h2>
+    <p>A marca <strong>Arte do Livro</strong> representa mais de três décadas de ofício dedicado à preservação da memória institucional brasileira. Cada livro restaurado ou encadernado carrega em suas fibras o compromisso de perpetuar a História com a mesma dignidade com que foi escrita.</p>
+    <p>A identidade visual traduz esse legado através de uma estética que evoca o calor do couro artesanal, a nobreza do ouro envelhecido e a solidez da tradição cartorária. É uma marca que respira respeito pelo documento, pela instituição e pelo tempo.</p>
+
+    <h2>1.2 Tom de Voz</h2>
+    <div class="rule-box">
+        <strong>Artesanal</strong> — O trabalho é feito à mão, com técnicas aprimoradas ao longo de 30 anos. A comunicação deve transmitir cuidado, minúcia e afeto pelo ofício.<br><br>
+        <strong>Confiável</strong> — Cartórios confiam documentos centenários a esta marca. A linguagem deve ser sólida, serena e digna de confiança institucional.<br><br>
+        <strong>Preservacionista</strong> — Mais que um serviço, é uma missão de conservação da História. O tom deve inspirar respeito e permanência.<br><br>
+        <strong>Humano</strong> — Por trás de cada livro há uma pessoa que se encantou com um Registro de Imóveis e nunca mais abandonou o ofício. A marca deve ter alma.
+    </div>
+
+    <h2>1.3 Proposta de Valor</h2>
+    <p><em>"Restauração e encadernação artesanal de Livros Oficiais, realizada in locu nas serventias, com mais de 30 anos de ofício e a durabilidade que a História exige."</em></p>
+</div>
+
+<!-- SEÇÃO 2: LOGOTIPO -->
+<div class="section" id="sec2">
+    <h1>2. Logotipo</h1>
+    <h2>2.1 Símbolo Principal</h2>
+    <p>O emblema combina um escudo heráldico — símbolo de proteção, tradição e autoridade — com uma lombada de livro em costura artesanal visível. O escudo remete à segurança institucional dos cartórios; a lombada costurada, ao ofício manual e à durabilidade. Juntos, comunicam: <em>"protegemos a História com as mãos."</em></p>
+    <div class="logo-grid">
+        <div class="logo-item">
+            <img src="logo-simbolo.png" alt="Símbolo Principal">
+            <div class="label">Versão Principal (PNG transparente)</div>
+        </div>
+        <div class="logo-item">
+            <img src="logo-gold.jpg" alt="Símbolo Ouro">
+            <div class="label">Versão Dourada</div>
+        </div>
+    </div>
+
+    <h2>2.2 Logotipo Horizontal</h2>
+    <p>A versão horizontal combina o símbolo reduzido com a wordmark "ARTE DO LIVRO" em tipografia serifada clássica. Deve ser usada em cabeçalhos, cartões de visita e materiais onde a leitura do nome é prioritária.</p>
+    <div class="logo-grid">
+        <div class="logo-item" style="width: 100%;">
+            <img src="logo-horizontal.jpg" alt="Logo Horizontal" style="max-height: 3cm; width: auto;">
+            <div class="label">Wordmark Horizontal</div>
+        </div>
+    </div>
+
+    <h2>2.3 Significado dos Elementos</h2>
+    <div class="rule-box">
+        <strong>Escudo</strong> — Proteção, tradição heráldica, solidez institucional. Representa a segurança que a marca oferece aos documentos sob seus cuidados.<br><br>
+        <strong>Lombada Costurada</strong> — O ofício artesanal em sua forma mais pura. As linhas cruzadas (costura copta/francesa) remetem à técnica manual e à durabilidade estrutural.<br><br>
+        <strong>Asas/Páginas Abertas</strong> — O livro como veículo de conhecimento e memória. A forma sugere tanto as páginas quanto asas, simbolizando a longevidade e o voo da História através do tempo.
+    </div>
+</div>
+
+<!-- SEÇÃO 3: PALETA -->
+<div class="section" id="sec3">
+    <h1>3. Paleta de Cores</h1>
+    <p>A paleta foi extraída dos materiais genuínos do ofício: couro envelhecido, ferragens de ouro velho, pergaminho e a madeira das estantes que guardam séculos de registros.</p>
+
+    <h2>3.1 Cores Primárias</h2>
+    <div class="color-grid">
+        <div class="color-card">
+            <div class="color-swatch" style="background: #4A2C20;"></div>
+            <div class="color-name">Couro Profundo</div>
+            <div class="color-hex">#4A2C20</div>
+        </div>
+        <div class="color-card">
+            <div class="color-swatch" style="background: #D4AF37;"></div>
+            <div class="color-name">Ouro Antigo</div>
+            <div class="color-hex">#D4AF37</div>
+        </div>
+    </div>
+
+    <h2>3.2 Cores Secundárias</h2>
+    <div class="color-grid">
+        <div class="color-card">
+            <div class="color-swatch" style="background: #8B6914;"></div>
+            <div class="color-name">Bronze Envelhecido</div>
+            <div class="color-hex">#8B6914</div>
+        </div>
+        <div class="color-card">
+            <div class="color-swatch" style="background: #C9B896;"></div>
+            <div class="color-name">Pergaminho</div>
+            <div class="color-hex">#C9B896</div>
+        </div>
+        <div class="color-card">
+            <div class="color-swatch" style="background: #6B5B4F;"></div>
+            <div class="color-name">Madeira Escura</div>
+            <div class="color-hex">#6B5B4F</div>
+        </div>
+    </div>
+
+    <h2>3.3 Cores Neutras</h2>
+    <div class="color-grid">
+        <div class="color-card">
+            <div class="color-swatch" style="background: #F5F0E8; border: 1px solid #ddd;"></div>
+            <div class="color-name">Papel Artesanal</div>
+            <div class="color-hex">#F5F0E8</div>
+        </div>
+        <div class="color-card">
+            <div class="color-swatch" style="background: #2C1810;"></div>
+            <div class="color-name">Tinta de Impressão</div>
+            <div class="color-hex">#2C1810</div>
+        </div>
+    </div>
+
+    <h2>3.4 Uso Recomendado</h2>
+    <div class="rule-box">
+        <strong>Fundo escuro (Couro Profundo)</strong> — Ideal para capas de apresentação, headers de landing page, cartões premium e selos de qualidade. Texto em Ouro Antigo ou Pergaminho.<br><br>
+        <strong>Fundo claro (Papel Artesanal)</strong> — Corpo de textos, backgrounds de sites, papelaria institucional. Texto em Tinta de Impressão ou Couro Profundo.<br><br>
+        <strong>Destaques (Ouro Antigo)</strong> — CTAs, botões principais, bordas decorativas, detalhes tipográficos, ícones e emblemas.<br><br>
+        <strong>Equilíbrio (Bronze/Pergaminho)</strong> — Bordas sutis, linhas divisórias, backgrounds alternados, hover states e elementos de apoio.
+    </div>
+</div>
+
+<!-- SEÇÃO 4: TIPOGRAFIA -->
+<div class="section" id="sec4">
+    <h1>4. Tipografia</h1>
+    <p>A tipografia reforça a dualidade da marca: tradição clássica para títulos (herança, legado, institucionalidade) e legibilidade contemporânea para corpo (clareza, profissionalismo, acessibilidade).</p>
+
+    <h2>4.1 Títulos — Cinzel</h2>
+    <div class="type-sample">
+        <h4 style="font-family: 'Cinzel', serif;">Arte do Livro</h4>
+        <div class="font-name">Cinzel — Weights: 400, 500, 600, 700</div>
+        <p style="font-family: 'Cinzel', serif; font-size: 12pt;">Restauração &amp; Encadernação Artesanal</p>
+        <p style="font-family: 'Cinzel', serif; font-size: 10pt;">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+    </div>
+    <p><strong>Uso:</strong> Títulos de seção, headlines da landing page, wordmark do logo, cabeçalhos de apresentações e materiais institucionais. Sempre em maiúsculas ou title case para headlines principais.</p>
+
+    <h2>4.2 Subtítulos &amp; Destaques — Playfair Display</h2>
+    <div class="type-sample">
+        <h4 style="font-family: 'Playfair Display', serif;">A História merece durar para sempre</h4>
+        <div class="font-name">Playfair Display — Weights: 400, 500, 600, 700 (inclui itálico)</div>
+        <p style="font-family: 'Playfair Display', serif; font-size: 11pt; font-style: italic;">"A cada livro terminado, uma realização pessoal — e a certeza de que contribuí para a guarda da História."</p>
+    </div>
+    <p><strong>Uso:</strong> Subtítulos, citações, frases de impacto, descrições de serviços e textos que precisam de requinte editorial. O itálico é especialmente indicado para depoimentos e trechos inspiradores.</p>
+
+    <h2>4.3 Corpo de Texto — Inter</h2>
+    <div class="type-sample">
+        <div class="font-name">Inter — Weights: 300, 400, 500, 600</div>
+        <p style="font-family: 'Inter', sans-serif; font-size: 11pt;">O trabalho é realizado na serventia com material adequado, de forma artesanal, garantindo a durabilidade e o melhor manuseio dos livros oficiais. Nosso atendimento in locu permite que o livro permaneça consultável durante todo o procedimento de restauração ou encadernação.</p>
+    </div>
+    <p><strong>Uso:</strong> Parágrafos, descrições técnicas, formulários, dados de contato, navegação e qualquer texto de leitura contínua. Priorizar peso 400 para corpo e 500/600 para negritos e labels.</p>
+
+    <h2>4.4 Hierarquia Tipográfica (Landing Page)</h2>
+    <table style="width: 100%; border-collapse: collapse; margin: 0.8cm 0;">
+        <thead>
+            <tr style="border-top: 2px solid #4A2C20; border-bottom: 1px solid #4A2C20;">
+                <th style="padding: 0.4cm; text-align: left; font-family: 'Cinzel', serif; font-size: 10pt; color: #4A2C20;">Elemento</th>
+                <th style="padding: 0.4cm; text-align: left; font-family: 'Cinzel', serif; font-size: 10pt; color: #4A2C20;">Fonte</th>
+                <th style="padding: 0.4cm; text-align: left; font-family: 'Cinzel', serif; font-size: 10pt; color: #4A2C20;">Tamanho</th>
+                <th style="padding: 0.4cm; text-align: left; font-family: 'Cinzel', serif; font-size: 10pt; color: #4A2C20;">Peso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">Hero Headline</td>
+                <td style="padding: 0.3cm;">Cinzel</td>
+                <td style="padding: 0.3cm;">36–48px</td>
+                <td style="padding: 0.3cm;">700</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">Subtítulo Hero</td>
+                <td style="padding: 0.3cm;">Playfair Display</td>
+                <td style="padding: 0.3cm;">18–22px</td>
+                <td style="padding: 0.3cm;">400 Italic</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">H2 (Seções)</td>
+                <td style="padding: 0.3cm;">Cinzel</td>
+                <td style="padding: 0.3cm;">24–28px</td>
+                <td style="padding: 0.3cm;">600</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">H3 (Subseções)</td>
+                <td style="padding: 0.3cm;">Playfair Display</td>
+                <td style="padding: 0.3cm;">18–20px</td>
+                <td style="padding: 0.3cm;">600</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">Corpo</td>
+                <td style="padding: 0.3cm;">Inter</td>
+                <td style="padding: 0.3cm;">16–18px</td>
+                <td style="padding: 0.3cm;">400</td>
+            </tr>
+            <tr style="border-bottom: 2px solid #4A2C20;">
+                <td style="padding: 0.3cm;">CTA / Botão</td>
+                <td style="padding: 0.3cm;">Inter</td>
+                <td style="padding: 0.3cm;">14–16px</td>
+                <td style="padding: 0.3cm;">600</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- SEÇÃO 5: ELEMENTOS DE APOIO -->
+<div class="section" id="sec5">
+    <h1>5. Elementos de Apoio</h1>
+    <h2>5.1 Texturas</h2>
+    <p>As texturas de couro, pergaminho e papel artesanal são elementos distintivos que podem ser usados como backgrounds em seções especiais da landing page, capas de apresentações e materiais impressos premium. Devem ser usadas com moderação para não competir com o conteúdo.</p>
+    <div class="texture-showcase">
+        <img src="textura-couro.jpg" alt="Textura Couro Artesanal">
+        <div class="label" style="margin-top: 0.3cm;">Textura principal — couro com ferragem dourada</div>
+    </div>
+
+    <h2>5.2 Linha Decorativa</h2>
+    <p>Uma linha fina em Ouro Antigo (#D4AF37) ou Pergaminho (#C9B896) pode ser usada como separador de seções na landing page e em documentos. Largura recomendada: 1–2px. Comprimento: 40–80px para separadores centrais; 100% para divisões de seção completas.</p>
+
+    <h2>5.3 Ícone de Destaque</h2>
+    <p>O símbolo reduzido (apenas a lombada costurada dentro do escudo, sem textura) pode ser usado como favicon, ícone de app, watermark em fotos de portfólio e selo de qualidade em certificados.</p>
+</div>
+
+<!-- SEÇÃO 6: APLICAÇÕES -->
+<div class="section" id="sec6">
+    <h1>6. Aplicações</h1>
+    <h2>6.1 Cartão de Visita</h2>
+    <p>O cartão de visita traduz a essência premium da marca em um formato tangível. Papel texturizado off-white, hot stamping dourado no emblema e tipografia em Couro Profundo.</p>
+    <div class="app-grid">
+        <div class="app-item">
+            <img src="cartao-visita.jpg" alt="Cartão de Visita">
+            <div class="label">Mockup de cartão de visita premium</div>
+        </div>
+    </div>
+
+    <h2>6.2 Aplicação Digital — Landing Page</h2>
+    <div class="rule-box">
+        <strong>Header</strong> — Background Couro Profundo (#4A2C20), logo horizontal centralizado ou alinhado à esquerda, navegação em Pergaminho (#C9B896) ou Papel Artesanal (#F5F0E8).<br><br>
+        <strong>Hero Section</strong> — Background com overlay escuro sobre fotografia de livros ou textura de couro. Headline em Cinzel 700, cor Ouro Antigo (#D4AF37) ou Papel Artesanal. Subheadline em Playfair Display Itálico.<br><br>
+        <strong>Seções de Conteúdo</strong> — Background alternando entre Papel Artesanal (#F5F0E8) e branco puro. Texto em Tinta de Impressão (#2C1810). Títulos em Cinzel, cor Couro Profundo.<br><br>
+        <strong>Botões CTA</strong> — Background Ouro Antigo (#D4AF37), texto Couro Profundo (#4A2C20), fonte Inter 600. Hover: inverte para background Couro Profundo, texto Ouro Antigo.<br><br>
+        <strong>Footer</strong> — Background Couro Profundo, texto Pergaminho (#C9B896), links em Ouro Antigo com hover em Papel Artesanal.
+    </div>
+
+    <h2>6.3 Redes Sociais (Futuro)</h2>
+    <p>Avatar: símbolo principal em fundo Couro Profundo. Capa: textura de couro com wordmark centralizada e tagline. Feed: fotos artísticas dos livros com watermark discreto do símbolo no canto inferior direito, cor Ouro Antigo com 30% opacidade.</p>
+</div>
+
+<!-- SEÇÃO 7: DIRETRIZES -->
+<div class="section" id="sec7">
+    <h1>7. Diretrizes de Uso</h1>
+    <h2>7.1 Proteção Mínima</h2>
+    <p>O símbolo deve sempre manter uma área de respiro equivalente à altura do escudo em todas as direções. Nunca distorcer, inclinar, aplicar sombras projetadas ou filtros que alterem as cores oficiais.</p>
+
+    <h2>7.2 Versões Permitidas</h2>
+    <table style="width: 100%; border-collapse: collapse; margin: 0.8cm 0;">
+        <thead>
+            <tr style="border-top: 2px solid #4A2C20; border-bottom: 1px solid #4A2C20;">
+                <th style="padding: 0.4cm; text-align: left; font-family: 'Cinzel', serif; font-size: 10pt; color: #4A2C20;">Versão</th>
+                <th style="padding: 0.4cm; text-align: left; font-family: 'Cinzel', serif; font-size: 10pt; color: #4A2C20;">Uso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">Principal (marrom/dourado)</td>
+                <td style="padding: 0.3cm;">Uso padrão em fundos claros e médios</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">Dourada</td>
+                <td style="padding: 0.3cm;">Fundos escuros, hot stamping, selos premium</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #C9B896;">
+                <td style="padding: 0.3cm;">Monocromática</td>
+                <td style="padding: 0.3cm;">Impressão em uma cor, fax, carimbos</td>
+            </tr>
+            <tr style="border-bottom: 2px solid #4A2C20;">
+                <td style="padding: 0.3cm;">Horizontal</td>
+                <td style="padding: 0.3cm;">Cabeçalhos, cartões, materiais institucionais</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>7.3 Uso Incorreto</h2>
+    <div class="rule-box">
+        <strong>Não</strong> esticar, comprimir ou distorcer o símbolo.<br>
+        <strong>Não</strong> alterar as cores oficiais para tons não aprovados.<br>
+        <strong>Não</strong> aplicar bordas, sombras ou efeitos 3D no símbolo.<br>
+        <strong>Não</strong> usar o símbolo sobre imagens com alto contraste sem uma camada de proteção (overlay escuro ou claro).<br>
+        <strong>Não</strong> separar o emblema do wordmark em aplicações onde ambos foram planejados juntos.
+    </div>
+
+    <h2>7.4 Considerações Finais</h2>
+    <p>Esta identidade visual foi concebida para acompanhar a marca "Arte do Livro" em sua missão de expandir o mercado e ser reconhecida como referência em restauração e encadernação artesanal de Livros Oficiais no Brasil. A consistência no uso destes elementos garantirá que a marca seja percebida com a mesma seriedade, tradição e qualidade que o ofício demonstra há mais de 30 anos.</p>
+    <p style="text-align: center; margin-top: 1.5cm; font-family: 'Playfair Display', serif; font-style: italic; color: #8B6914; font-size: 12pt;">"A História merece durar para sempre."</p>
+</div>
+
+</body>
+</html>
