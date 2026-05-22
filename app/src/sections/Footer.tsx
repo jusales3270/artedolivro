@@ -19,8 +19,9 @@ export default function Footer() {
             {[
               { label: 'Início', href: '#hero' },
               { label: 'História', href: '#sobre' },
-              { label: 'Serviços', href: '#servicos' },
+              { label: 'Processo', href: '#processo' },
               { label: 'Clientes', href: '#clientes' },
+              { label: 'Serviços', href: '#servicos' },
               { label: 'Contato', href: '#contato' },
             ].map((link) => (
               <button

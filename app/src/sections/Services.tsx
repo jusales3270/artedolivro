@@ -5,7 +5,7 @@ const services = [
     icon: BookOpen,
     title: 'Restauração de Livros Oficiais',
     description:
-      'Recuperação completa de livros deteriorados pelo tempo, com técnicas artesanais que respeitam a integridade do documento e preservam sua valor histórico e legal.',
+      'Recuperação completa de livros deteriorados pelo tempo, com técnicas artesanais que respeitam a integridade do documento e preservam seu valor histórico e legal.',
   },
   {
     icon: Sparkles,

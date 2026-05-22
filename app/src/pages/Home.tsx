@@ -15,10 +15,10 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Services />
+        <Process />
         <Differentials />
         <Portfolio />
-        <Process />
+        <Services />
         <Contact />
       </main>
       <Footer />
