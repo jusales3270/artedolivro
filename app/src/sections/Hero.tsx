@@ -42,9 +42,27 @@ export default function Hero() {
 
         <div className="w-20 h-[2px] bg-ouro mx-auto mb-8 animate-fade-in" style={{ animationDelay: '0.5s' }} />
 
-        <p className="font-inter text-base md:text-lg text-pergaminho/90 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+        <p className="font-inter text-base md:text-lg text-pergaminho/90 max-w-2xl mx-auto mb-1 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
           Restauração e encadernação artesanal de Livros Oficiais, realizada <em className="not-italic font-semibold text-ouro">in locu</em> nas serventias, com mais de 30 anos de ofício e a durabilidade que a História exige.
         </p>
+
+        {/* Small book images for visualization */}
+        <div className="flex justify-center items-center gap-12 mt-1 mb-2 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
+          <div className="relative group">
+            <img
+              src="/assets/livro-antes.png"
+              alt="Livro antes da restauração"
+              className="transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+            />
+          </div>
+          <div className="relative group">
+            <img
+              src="/assets/livro-depois.png"
+              alt="Livro após a restauração"
+              className="transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+            />
+          </div>
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
           <a
