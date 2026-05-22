@@ -47,12 +47,14 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-          <button
-            onClick={() => handleScroll('#contato')}
-            className="bg-ouro text-couro px-8 py-4 rounded font-inter text-sm font-semibold uppercase tracking-widest hover:bg-ouro-light transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+          <a
+            href="https://wa.me/5515997355446"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-ouro text-couro px-8 py-4 rounded font-inter text-sm font-semibold uppercase tracking-widest hover:bg-ouro-light transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center inline-block"
           >
             Solicitar Orçamento
-          </button>
+          </a>
           <button
             onClick={() => handleScroll('#sobre')}
             className="border border-pergaminho/50 text-pergaminho px-8 py-4 rounded font-inter text-sm font-medium uppercase tracking-widest hover:border-ouro hover:text-ouro transition-all duration-300"

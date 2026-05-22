@@ -55,12 +55,14 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
-          <button
-            onClick={() => handleClick('#contato')}
-            className="bg-ouro text-couro px-5 py-2 rounded font-inter text-sm font-semibold uppercase tracking-wide hover:bg-ouro-light transition-colors duration-300"
+          <a
+            href="https://wa.me/5515997355446"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-ouro text-couro px-5 py-2 rounded font-inter text-sm font-semibold uppercase tracking-wide hover:bg-ouro-light transition-colors duration-300 text-center inline-block"
           >
             Solicitar Orçamento
-          </button>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -86,12 +88,14 @@ export default function Navbar() {
                 {link.label}
               </button>
             ))}
-            <button
-              onClick={() => handleClick('#contato')}
-              className="bg-ouro text-couro px-5 py-3 rounded font-inter text-sm font-semibold uppercase tracking-wide hover:bg-ouro-light transition-colors mt-2"
+            <a
+              href="https://wa.me/5515997355446"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-ouro text-couro px-5 py-3 rounded font-inter text-sm font-semibold uppercase tracking-wide hover:bg-ouro-light transition-colors mt-2 text-center inline-block"
             >
               Solicitar Orçamento
-            </button>
+            </a>
           </div>
         </div>
       )}
