@@ -23,9 +23,9 @@ export default function Contact() {
           {/* Imagem com citação sobreposta */}
           <div className="relative rounded-xl overflow-hidden shadow-2xl border border-ouro/20 group h-full min-h-[450px]">
             <img
-              src="/assets/casal2.png"
+              src="/assets/casal-novo.png"
               alt="Equipe Arte do Livro"
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-couro/95 via-couro/30 to-transparent opacity-90" />
             
